@@ -1,6 +1,5 @@
 local wezterm = require("wezterm")
 
-
 -- Navigator.nvim configuration to switch between wezterm terminal multiplexer --
 local function is_vi_process(pane)
 	return pane:get_foreground_process_name():find("n?vim") ~= nil
@@ -149,14 +148,14 @@ end
 
 local function get_current_working_dir(tab) --needs fix to acomodate to windows
 	local current_dir = tab.active_pane.current_working_dir
-	local HOME_DIR = ""--string.format("file://%s", os.getenv("HOME")) --needs fix to work for windows
-	
+	local HOME_DIR = "" --string.format("file://%s", os.getenv("HOME")) --needs fix to work for windows
+
 	local length = string.len(current_dir)
 	local start = math.max(length - 15 + 1, 12)
 	local substring = string.sub(current_dir, start, length)
 
 	return ".." .. substring --== HOME_DIR and "  ~"
-		--or string.format("  %s", string.gsub(current_dir, "(.*[/\\])(.*)", "%2"))
+	--or string.format("  %s", string.gsub(current_dir, "(.*[/\\])(.*)", "%2"))
 end
 
 wezterm.on("format-tab-title", function(tab)
@@ -181,7 +180,6 @@ end)
 
 return {
 	font = wezterm.font_with_fallback({
-		"Liga SFMono Nerd Font",
 		"JetBrains Mono Regular",
 		"CaskaydiaCove Nerd Font",
 		"Apple Color Emoji",
@@ -194,7 +192,7 @@ return {
 	show_update_window = false,
 	check_for_updates = false,
 	line_height = 1.30,
-	window_decorations = "RESIZE",
+	-- window_decorations = "RESIZE",
 	window_close_confirmation = "NeverPrompt",
 	audible_bell = "Disabled",
 	window_padding = {
